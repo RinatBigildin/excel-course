@@ -1,5 +1,5 @@
 {
-    "parser": "babel-elint",
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 2017,
         "sourceType": "module"
@@ -11,8 +11,7 @@
     },
     "rules": {
         "semi":"off"
-        
-
+     
     },
     "extends": ["eslint:recommended", "google"]
 }
