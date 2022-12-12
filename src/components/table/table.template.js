@@ -40,13 +40,11 @@ function toChar(_, index) {
 export function createTable(rowsCount = 15) {
   const colsCount = CODES.Z - CODES.A + 1;
   const rows = [];
-  // eslint-disable-next-line max-len
   const cols = new Array(colsCount)
       .fill('')
       .map(toChar)
       .map(toColumn)
       .join('');
-  //   console.log(cols);
   rows.push(createRow(null, cols));
   const cells = new Array(colsCount)
       .fill('')
