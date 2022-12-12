@@ -3,10 +3,24 @@ const CODES = {
   Z: 90,
 }
 
-function toCell(_, col) {
-  return `
-    <div class="cell" contenteditable data-col="${col}"></div>
+// function toCell(col, row) {
+//   return `
+//     <div class="cell" contenteditable data-col="${col}"
+//  data-row="${row}"></div>
+//     `;
+// }
+
+function toCell(row) {
+  return function(_, col) {
+    return `
+        <div 
+        class="cell" 
+        contenteditable 
+        data-type="cell"
+        data-col="${col}" 
+        data-id="${row}:${col}"></div>
     `;
+  }
 }
 
 function toColumn(col, index) {
@@ -18,7 +32,7 @@ function toColumn(col, index) {
     `;
 }
 
-function createRow(indexRow, content) {
+function createRow(content, indexRow) {
   const resize = indexRow
   ? `<div class="row-resize" data-resize="row"></div>`
   : '';
@@ -45,13 +59,15 @@ export function createTable(rowsCount = 15) {
       .map(toChar)
       .map(toColumn)
       .join('');
-  rows.push(createRow(null, cols));
-  const cells = new Array(colsCount)
-      .fill('')
-      .map(toCell)
-      .join('');
-  for (let i=0; i < rowsCount; i++) {
-    rows.push(createRow(i+1, cells));
+  rows.push(createRow(cols, null));
+
+  for (let row=0; row < rowsCount; row++) {
+    const cells = new Array(colsCount)
+        .fill('')
+        // .map( (_, col) => toCell(col, row))
+        .map(toCell(row))
+        .join('');
+    rows.push(createRow(cells, row+1));
   }
   return rows.join('');
 }
