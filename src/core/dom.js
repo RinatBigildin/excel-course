@@ -37,6 +37,30 @@ class Dom {
     }
     return this;
   }
+
+  closest(selector) {
+    return $(this.$el.closest(selector));
+  }
+
+  get data() {
+    return this.$el.dataset;
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect();
+  }
+
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector);
+  }
+
+  css(styles = {}) {
+    Object.entries(styles).forEach(([key, value]) =>{
+      if (key in this.$el.style) {
+        this.$el.style[key] = value;
+      }
+    });
+  }
 }
 
 $('div').html('<h1>Test</h1>').clear();
