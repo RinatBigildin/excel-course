@@ -20,6 +20,9 @@ export class StoreSubscriber {
         }
       });
       this.prevState = this.store.getState();
+      if (process.env.NODE_ENV === 'develepment') {
+        window['redux'] = this.prevState;
+      }
     });
   }
   unsubcriberComponents() {
