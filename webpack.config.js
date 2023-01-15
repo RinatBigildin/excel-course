@@ -12,7 +12,7 @@ console.log('IS DEV', isDev);
 const filename = (ext)=>isDev? `bundle.${ext}`: `bundle.[hash].${ext}`
 
 const jsLoader = () => {
-  const loaders = ['babel-lader'];
+  const loaders = ['babel-loader'];
   // [{
   //   loader: 'babel-loader',
   //   options: {
