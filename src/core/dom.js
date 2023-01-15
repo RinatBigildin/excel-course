@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 class Dom {
   constructor(selector) {
     this.$el = typeof selector ==='string'
@@ -6,8 +9,8 @@ class Dom {
   }
 
   html(html) {
-    if (typeof html === 'string') {
-      this.$el.innerHTML = html;
+    if (typeof html === 'string' && html != null) {
+      this.$el.innerHTML = (html||'');
       return this;
     }
     return this.$el.outerHTML.trim();
